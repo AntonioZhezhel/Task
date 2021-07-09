@@ -1,0 +1,34 @@
+ using System;
+
+  namespace Task3_2
+    {
+        class Program3_2
+        {
+             static void Main()
+            {
+                 int x = -1;
+                Iterating counter1 = new Iterating { Value = x};
+                x = (int) counter1;
+            }
+        }
+        class Iterating
+        {
+            public int Value { get; set; }
+    
+            public static explicit operator int(Iterating iterating)
+            {
+                
+                while (iterating.Value < 11)
+                {
+                    iterating.Value++;
+                    if (iterating.Value == 11)
+                    {
+                        iterating.Value = 0;
+                    }
+                    Console.WriteLine(iterating.Value); 
+                }
+                return iterating.Value;
+            }
+        }
+   
+    }
