@@ -6,82 +6,77 @@ namespace Lessons5_6_Stack
     {
         static void Main(string[] args)
         {
-            Push(10);
-            Push(30);
-            Push(40);
-            Push(50);
-            Print();
-            Peek();
-            Pop();
-            Peek();
-            Print();
+
+            Operations operations = new Operations();
+            Stack stack = new Stack();
+            
+            operations.Push(stack,10);
+            operations.Push(stack,30);
+            operations.Push(stack,40);
+            operations.Push(stack,50);
+            operations.Print(stack);
+            operations.Peek(stack);
+            operations.Pop(stack);
+            operations.Peek(stack);
+            operations.Print(stack);
         }
 
-        public static void Push(int value)
+        public class Operations
         {
-            Node newNode = new Node(value);
-
-            if (Stack.top == null)
+            public void Push(Stack stack,int value)
             {
-                newNode.next = null;
-            }
-            else
-            {
-                newNode.next = Stack.top;
-            }
+                Node newNode = new Node(value);
 
-            Stack.top = newNode;
-            Console.WriteLine("{0}pushed", value);
-        }
+                if (Stack.top == null)
+                {
+                    newNode.next = null;
+                }
+                else
+                {
+                    newNode.next = Stack.top;
+                }
 
-        public static void Pop()
-        {
-            if (Stack.top == null)
-            {
-                Console.WriteLine("error");
+                Stack.top = newNode;
+                Console.WriteLine("{0}pushed", value);
             }
 
-            Console.WriteLine("Item Pop {0}", Stack.top.data);
-            Stack.top = Stack.top.next;
-        }
-
-        public static void Peek()
-        {
-            if (Stack.top == null)
+            public void Pop(Stack stack)
             {
-                Console.WriteLine("error");
+                if (Stack.top == null)
+                {
+                    Console.WriteLine("error");
+                }
+
+                Console.WriteLine("Item Pop {0}", Stack.top.data);
+                Stack.top = Stack.top.next;
             }
 
-            Console.WriteLine("{0}Top Stack", Stack.top.data);
-        }
-
-        public static void Print()
-        {
-            if (Stack.top == null)
+            public void Peek(Stack stack)
             {
-                Console.WriteLine("error");
+                if (Stack.top == null)
+                {
+                    Console.WriteLine("error");
+                }
+
+                Console.WriteLine("{0}Top Stack", Stack.top.data);
             }
 
-            Node temp = Stack.top;
-            while (temp != null)
+            public void Print(Stack stack)
             {
-                Console.WriteLine(temp.data);
-                temp = temp.next;
+                if (Stack.top == null)
+                {
+                    Console.WriteLine("error");
+                }
+
+                Node temp = Stack.top;
+                while (temp != null)
+                {
+                    Console.WriteLine(temp.data);
+                    temp = temp.next;
+                }
+
+                Console.WriteLine("-----------");
             }
-
-            Console.WriteLine("-----------");
-        }
-    }
-
-    public class Node
-    {
-        public int data;
-        public Node next;
-
-        public Node(int d)
-        {
-            data = d;
-            next = null;
         }
     }
 
@@ -94,4 +89,16 @@ namespace Lessons5_6_Stack
             top = null;
         }
     }
+    public class Node
+    {
+        public int data;
+        public Node next;
+
+        public Node(int d)
+        {
+            data = d;
+            next = null;
+        }
+    }
+
 }
